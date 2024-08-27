@@ -4,7 +4,7 @@
   #become: yes
 
   vars_files:
-    - vars.yaml
+    - /tmp/vars.yaml
 
   pre_tasks:
     - name: "Install packages"
