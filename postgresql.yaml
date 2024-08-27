@@ -18,9 +18,6 @@
         - psycopg2-binary
 
   tasks:
-    - name: "Initialize PostgreSQL"
-      shell: "postgresql-setup initdb"
- 
     - name: "Start and enable services"
       service: "name={{ item }} state=started enabled=yes"
       with_items:
