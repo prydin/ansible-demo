@@ -8,7 +8,8 @@
   pre_tasks:
     - name: "Install packages"
       apt: "name={{ item }} state=present"
-        pkg:
+      state: present
+        name:
           - postgresql
           - postgresql-server
 
