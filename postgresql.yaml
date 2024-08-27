@@ -1,5 +1,5 @@
 ---
-- hosts: loacalhost
+- hosts: localhost
   become: yes
 
   vars_files:
