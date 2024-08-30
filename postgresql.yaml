@@ -17,6 +17,9 @@
           - python3-psycopg2
 
   tasks:
+    - name: "Dsiplay variables"
+      debug:
+        msg: "{{ db_name }} {{ db_user }}"
     - name: "Start and enable services"
       service: "name={{ item }} state=started enabled=yes"
       with_items:
