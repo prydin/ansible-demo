@@ -11,8 +11,8 @@
     - name: "Install packages"
       apt: 
         name:
-          - postgresql
-          - postgresql-contrib
+          - postgresql=14.1
+          - postgresql-contrib=14.1
           - python3-pip
           - python3-psycopg2
 

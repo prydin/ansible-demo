@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+  become_user: root
+
+  vars_files:
+    - /tmp/vars.json
+
+  pre_tasks:
+    - name: "Install packages"
+      apt: 
+        name:
+          - apache2
