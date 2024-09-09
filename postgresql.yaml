@@ -11,8 +11,15 @@
     - name: "Install packages"
       apt: 
         name:
-          - postgresql=14.1
-          - postgresql-contrib=14.1
+          -name:
+          - postgresql14
+          - postgresql14-server
+          - postgresql14-contrib
+          - postgresql14-devel
+          - postgresql14-libs
+          - centos-release-scl
+          - llvm5.0-devel
+          - llvm-toolset-7-clang
           - python3-pip
           - python3-psycopg2
 
