@@ -92,10 +92,7 @@
         - sed -i "s/dbiphere/$MySQLip/g" /var/www/opencart/admin/config.php
         - sed -i "s/usernamehere/$USER/g" /var/www/opencart/admin/config.php
         - sed -i "s/passwordhere/$PASS/g" /var/www/opencart/admin/config.php2
-        - cd /tmp
         - echo "ocuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-        - echo 'Cloud-init is done!' >> /tmp/finished.txt
-
 
     - name: "Start and enable services"
       service: "name={{ item }} state=restarted enabled=yes"
