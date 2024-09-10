@@ -31,7 +31,7 @@
       git:
         repo: "https://github.com/jsenicka/opencart-demo.git"
         depth: 1
-        dest: "/tmp/opencart"
+        dest: "/tmp"
 
     - name: "Move OpenCart files to /var/www/html"
       command: "mv /tmp/opencart /var/www/"
@@ -57,13 +57,6 @@
           </VirtualHost>
         dest: "/etc/apache2/sites-available/opencart.conf"
 
-    - name: "Change ownership of OpenCart files"
-      file: 
-        path: "/var/www/html/opencart"
-        owner: "www-data"
-        group: "www-data"
-        mode: "0755"
-
     - name: "Create an application user named ocuser"
       user:
         name: "ocuser"
@@ -75,7 +68,6 @@
       command: "{{ item }}"
       with_items:
         - rm -rf /var/www/opencart
-        - mv /tmp/opencart /var/www/
         - chown -R www-data.www-data /var/www/opencart
         - chmod -R 775 /var/www/opencart
         - PASS=VMware123!
