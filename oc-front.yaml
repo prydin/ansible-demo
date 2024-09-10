@@ -31,7 +31,7 @@
       git:
         repo: "https://github.com/jsenicka/opencart-demo.git"
         depth: 1
-        dest: "/tmp"
+        dest: "/tmp/opencart"
 
     - name: "Move OpenCart files to /var/www/html"
       command: "mv /tmp/opencart /var/www/"
