@@ -24,6 +24,7 @@
           - php-xmlrpc
           - unzip
           - open-vm-tools
+          - mysql-client
 
   tasks:
     - name: "Pull OpenCart demo from Github"
