@@ -34,7 +34,7 @@
         dest: "/tmp/opencart"
 
     - name: "Move OpenCart files to /var/www/html"
-      command: "cp -R /tmp/opencart /var/www/"
+      command: "cp -R /tmp/opencart /var/www/html"
 
     - name: "Write apache configuration to opencart.conf"
       copy:
