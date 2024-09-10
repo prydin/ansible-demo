@@ -27,10 +27,12 @@
           - mysql-client
 
   tasks:
-    - name: "Pull OpenCart demo from Github"
+    - name: "Clone OpenCart demo from Github"
       git:
         repo: "https://github.com/jsenicka/opencart-demo.git"
+        depth: 1
         dest: "/tmp/opencart"
+
     - name: "Move OpenCart files to /var/www/html"
       copy:
         src: "/tmp/opencart"
@@ -56,7 +58,7 @@
             </Directory>
           </VirtualHost>
         dest: "/etc/apache2/sites-available/opencart.conf"
-        
+
     - name: "Change ownership of OpenCart files"
       file: 
         path: "/var/www/html/opencart"
