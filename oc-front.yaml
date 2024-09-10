@@ -22,7 +22,6 @@
           - php-zip
           - php-curl
           - php-xmlrpc
-          - mysql-server-5.7
           - unzip
           - open-vm-tools
 
