@@ -71,12 +71,10 @@
         shell: "/bin/bash"
         groups: "sudo"
 
-    - name: Make sure that '/var/www/opencart' doesn't exist"
-      file: "path=/var/www/opencart state=absent"
-
     - name: "Copy OpenCart files to /var/www/html"
       command: "{{ item }}"
       with_items:
+        - rm -rf /var/www/opencart
         - mv /tmp/opencart /var/www/
         - chown -R www-data.www-data /var/www/opencart
         - chmod -R 775 /var/www/opencart
