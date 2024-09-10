@@ -33,24 +33,24 @@
         depth: 1
         dest: "/tmp/opencart"
 
-    - name: "Move OpenCart files to /var/www/html"
-      command: "cp -R /tmp/opencart /var/www/html"
+    - name: "Move OpenCart files to /var/www"
+      command: "cp -R /tmp/opencart /var/www"
 
     - name: "Write apache configuration to opencart.conf"
       copy:
         content: |
           <VirtualHost *:80>
             ServerName www.opencart.vcf.local
-            DocumentRoot /var/www/html/opencart
-            <Directory /var/www/html/opencart/>
+            DocumentRoot /var/www/opencart
+            <Directory /var/www/opencart/>
               AllowOverride All
               allow from all
             </Directory>
           </VirtualHost>
           <VirtualHost *:8080>
             ServerName www.opencart.vcf.local
-            DocumentRoot /var/www/html/opencart
-            <Directory /var/www/html/opencart/>
+            DocumentRoot /var/www/opencart
+            <Directory /var/www/opencart/>
               AllowOverride All
               allow from all
             </Directory>
