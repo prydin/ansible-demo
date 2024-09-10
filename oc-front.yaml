@@ -32,10 +32,11 @@
         repo: "https://github.com/jsenicka/opencart-demo.git"
         dest: "/tmp/opencart"
     - name: "Copy OpenCart files to /var/www/html"
-      command: 
-        - "mv /tmp/opencart /var/www/opencart"
-        - "chown -R www-data.www-data /var/www/opencart"
-        - "chmod -R 755 /var/www/opencart"
+      command:
+      with_items:
+        - mv /tmp/opencart /var/www/opencart
+        - chown -R www-data.www-data /var/www/opencart
+        - chmod -R 755 /var/www/opencart
     - name: "Start and enable services"
       service: "name={{ item }} state=started enabled=yes"
       with_items:
