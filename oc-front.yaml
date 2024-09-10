@@ -31,7 +31,7 @@
         repo: "https://github.com/jsenicka/opencart-demo.git"
         dest: "/tmp/opencart"
     - name: "Copy OpenCart files to /var/www/html"
-      command:
+      command: {{ item }}
       with_items:
         - mv /tmp/opencart /var/www/opencart
         - chown -R www-data.www-data /var/www/opencart
