@@ -71,7 +71,7 @@
         shell: "/bin/bash"
         groups: "sudo"
 
-    -name: Make sure that '/var/www/opencart' doesn't exist"
+    - name: Make sure that '/var/www/opencart' doesn't exist"
       file: "path=/var/www/opencart state=absent"
 
     - name: "Copy OpenCart files to /var/www/html"
