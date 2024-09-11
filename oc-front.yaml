@@ -111,18 +111,8 @@
         - echo "[client]" >> /etc/mysql/mysql.conf.d/mysqld.cnf
         - echo "user={{ db_user }}" >> /etc/mysql/mysql.conf.d/mysqld.cnf
         - echo "password={{ db_password }}" >> /etc/mysql/mysql.conf.d/mysqld.cnf
-        - sed -i "s/MOAD Electronic Super Store/Holodeck Aria Assembler Fixed Network Lab/g" /var/www/opencart/install/opencart.sql
-        - mysql -u {{ db_user }} -h ${{ db_ip }} -e 'source /var/www/opencart/install/opencart.sql'
-        - mysql -u {{ db_user }} -h ${{ db_ip }} -e "INSERT INTO oc_user (user_id,user_group_id,username,password,salt,firstname,lastname,email,image,code,ip,status,date_added) VALUES (1,1,'admin','5feaa046f6927df3d744007ec1491dba838f672e','c4wnfrq9J','demo','user','admin@admin.com','none','none','none',1,'2019-01-31 06:29:09')" opencart
-        - #sed -i "s/frontendiphere/{{ my_ip }}/g" /var/www/opencart/config.php
-        - #sed -i "s/dbiphere/${{ db_ip }}/g" /var/www/opencart/config.php
-        - #sed -i "s/usernamehere/{{ db_user }}/g" /var/www/opencart/config.php
-        - #sed -i "s/passwordhere/{{ db_password }}/g" /var/www/opencart/config.php
-        - #sed -i "s/frontendiphere/{{ my_ip }}/g" /var/www/opencart/admin/config.php
-        - #sed -i "s/dbiphere/${{ db_ip }}/g" /var/www/opencart/admin/config.php
-        - #sed -i "s/usernamehere/{{ db_user }}/g" /var/www/opencart/admin/config.php
-        - #sed -i "s/passwordhere/{{ db_password }}/g" /var/www/opencart/admin/config.php2
-        - #echo "ocuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+        - mysql -u {{ db_user }} -h {{ db_ip }} -e 'source /var/www/opencart/install/opencart.sql'
+        - mysql -u {{ db_user }} -h {{ db_ip }} -e "INSERT INTO oc_user (user_id,user_group_id,username,password,salt,firstname,lastname,email,image,code,ip,status,date_added) VALUES (1,1,'admin','5feaa046f6927df3d744007ec1491dba838f672e','c4wnfrq9J','demo','user','admin@admin.com','none','none','none',1,'2019-01-31 06:29:09')" opencart
 
     - name: "Start and enable services"
       service: "name={{ item }} state=restarted enabled=yes"
