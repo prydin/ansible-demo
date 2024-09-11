@@ -60,13 +60,6 @@
           </VirtualHost>
         dest: "/etc/apache2/sites-available/opencart.conf"
 
-    - name: "Create an application user named ocuser"
-      user:
-        name: "ocuser"
-        password: "{{ db_password }}"
-        shell: "/bin/bash"
-        groups: "sudo"
-
     - name: "Copy OpenCart files to /var/www/html"
       command: "{{ item }}"
       with_items:
@@ -77,7 +70,7 @@
         - a2ensite opencart.conf
         - a2dissite 000-default.conf
         - echo "[client]" >> /etc/mysql/mysql.conf.d/mysqld.cnf
-        - echo "user=ocuser" >> /etc/mysql/mysql.conf.d/mysqld.cnf
+        - echo "user={{ db_user }}" >> /etc/mysql/mysql.conf.d/mysqld.cnf
         - echo "password={{ db_password }}" >> /etc/mysql/mysql.conf.d/mysqld.cnf
         - sed -i "s/MOAD Electronic Super Store/Holodeck Aria Assembler Fixed Network Lab/g" /var/www/opencart/install/opencart.sql
         - mysql -u {{ db_user }} -h ${{ db_ip }} -e 'source /var/www/opencart/install/opencart.sql'
