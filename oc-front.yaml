@@ -71,7 +71,6 @@
       with_items:
         - /var/www/opencart/config.php
         - /var/www/opencart/admin/config.php
-        - /var/www/opencart/admin/config.php2
 
     - name: "Set up DB password"
       replace:
@@ -81,7 +80,6 @@
       with_items:
         - /var/www/opencart/config.php
         - /var/www/opencart/admin/config.php
-        - /var/www/opencart/admin/config.php2
 
     - name: "Set up frontend IP"
       replace:  
@@ -91,7 +89,6 @@
       with_items:
         - /var/www/opencart/config.php
         - /var/www/opencart/admin/config.php
-        - /var/www/opencart/admin/config.php2
 
     - name: "Set up DB IP"
       replace:
@@ -101,7 +98,6 @@
       with_items:
         - /var/www/opencart/config.php
         - /var/www/opencart/admin/config.php
-        - /var/www/opencart/admin/config.php2
 
     - name: "Copy OpenCart files to /var/www/html"
       command: "{{ item }}"
