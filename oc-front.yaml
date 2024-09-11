@@ -63,11 +63,11 @@
           </VirtualHost>
         dest: "/etc/apache2/sites-available/opencart.conf"
 
-    - name: "Replace 'usernameher' with '{{ db_user }}' in OpenCart config files":
+    - name: "Replace 'usernamehere' with '{{ db_user }}' in OpenCart config files":
       replace:
-        path: {{ item }}
-        regexp: 'usernamehere'
-        replace: '{{ db_user }}'
+        path: "{{ item }}"
+        regexp: "usernamehere"
+        replace: "{{ db_user }}"
       with_items:
         - /var/www/opencart/config.php
         - /var/www/opencart/admin/config.php
@@ -75,9 +75,9 @@
 
     - name: "Replace 'passwordhere' with '{{ db_password }}' in OpenCart config files":
       replace:
-        path: {{ item }}
-        regexp: 'passwordhere'
-        replace: '{{ db_password }}'
+        path: "{{ item }}"
+        regexp: "passwordhere"
+        replace: "{{ db_password }}"
       with_items:
         - /var/www/opencart/config.php
         - /var/www/opencart/admin/config.php
@@ -85,9 +85,9 @@
 
     - name: "Replace 'frontendiphere' with '{{ my_ip }}'  in OpenCart config files":
       replace:  
-        path: {{ item }}
-        regexp: 'frontendiphere'
-        replace: '{{ my_ip }}'
+        path: "{{ item }}"
+        regexp: "frontendiphere"
+        replace: "{{ my_ip }}"
       with_items:
         - /var/www/opencart/config.php
         - /var/www/opencart/admin/config.php
