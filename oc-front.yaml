@@ -73,7 +73,7 @@
         - /var/www/opencart/admin/config.php
         - /var/www/opencart/admin/config.php2
 
-    - name: "Set up DB password":
+    - name: "Set up DB password"
       replace:
         path: "{{ item }}"
         regexp: "passwordhere"
@@ -83,7 +83,7 @@
         - /var/www/opencart/admin/config.php
         - /var/www/opencart/admin/config.php2
 
-    - name: "Set up frontend IP":
+    - name: "Set up frontend IP"
       replace:  
         path: "{{ item }}"
         regexp: "frontendiphere"
@@ -93,7 +93,7 @@
         - /var/www/opencart/admin/config.php
         - /var/www/opencart/admin/config.php2
 
-    - name: "Set up DB IP":
+    - name: "Set up DB IP"
       replace:
         path: '{{ item }}'
         regexp: 'dbiphere'
