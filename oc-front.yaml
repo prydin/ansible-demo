@@ -95,7 +95,7 @@
 
     - name: "Replace 'dbiphere' with '{{ db_ip }}' in OpenCart config files":
       replace:
-        path: {{ item }}
+        path: '{{ item }}'
         regexp: 'dbiphere'
         replace: '{{ db_ip }}'
       with_items:
