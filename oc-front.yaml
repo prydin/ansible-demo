@@ -63,7 +63,7 @@
     - name: "Create an application user named ocuser"
       user:
         name: "ocuser"
-        password: {{ db_password }}
+        password: "{{ db_password }}"
         shell: "/bin/bash"
         groups: "sudo"
 
