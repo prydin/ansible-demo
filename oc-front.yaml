@@ -67,7 +67,6 @@
     - name: "Copy OpenCart files to /var/www/html"
       command: "{{ item }}"
       with_items:
-        - rm -rf /var/www/opencart
         - chown -R www-data.www-data /var/www/opencart
         - chmod -R 775 /var/www/opencart
         - PASS=VMware123!
