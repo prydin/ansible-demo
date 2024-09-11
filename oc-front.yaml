@@ -68,7 +68,7 @@
         groups: "sudo"
 
     - name: "Determine IP address and save to my_ip variable"
-      command: "ip route get 8.8.8.8 | awk -F\"src \" 'NR==1{split($2,a,\" \");print a[1]}'""
+      command: "ip route get 8.8.8.8 | awk -F\"src \" 'NR==1{split($2,a,\" \");print a[1]}'"
       register: my_ip
 
     - name: "Copy OpenCart files to /var/www/html"
