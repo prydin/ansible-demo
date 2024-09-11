@@ -4,6 +4,9 @@
   become: yes
   become_user: root
 
+  vars_files:
+    - /tmp/vars.json
+
   pre_tasks:
     - name: "Install packages"
       apt: 
@@ -60,37 +63,38 @@
     - name: "Create an application user named ocuser"
       user:
         name: "ocuser"
-        password: "VMware123!"
+        password: {{ db_password }}
         shell: "/bin/bash"
         groups: "sudo"
+
+    - name: "Determine IP address and save to my_ip variable"
+      command: $(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
+      register: my_ip
 
     - name: "Copy OpenCart files to /var/www/html"
       command: "{{ item }}"
       with_items:
         - chown -R www-data.www-data /var/www/opencart
         - chmod -R 775 /var/www/opencart
-        - PASS=VMware123!
         - sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
         - cd /etc/apache2/sites-available/
         - a2ensite opencart.conf
         - a2dissite 000-default.conf
         - echo "[client]" >> /etc/mysql/mysql.conf.d/mysqld.cnf
         - echo "user=ocuser" >> /etc/mysql/mysql.conf.d/mysqld.cnf
-        - echo "password=$PASS" >> /etc/mysql/mysql.conf.d/mysqld.cnf
+        - echo "password={{ db_password }}" >> /etc/mysql/mysql.conf.d/mysqld.cnf
         - export onpremip=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
-        - MySQLip=${resource.OC-MySQL-Auto.networks[0].address}
-        - export ip4=$onpremip
         - sed -i "s/MOAD Electronic Super Store/Holodeck Aria Assembler Fixed Network Lab/g" /var/www/opencart/install/opencart.sql
-        - mysql -u $USER -h $MySQLip -e 'source /var/www/opencart/install/opencart.sql'
-        - mysql -u $USER -h $MySQLip -e "INSERT INTO oc_user (user_id,user_group_id,username,password,salt,firstname,lastname,email,image,code,ip,status,date_added) VALUES (1,1,'admin','5feaa046f6927df3d744007ec1491dba838f672e','c4wnfrq9J','demo','user','admin@admin.com','none','none','none',1,'2019-01-31 06:29:09')" opencart
-        - sed -i "s/frontendiphere/$ip4/g" /var/www/opencart/config.php
-        - sed -i "s/dbiphere/$MySQLip/g" /var/www/opencart/config.php
-        - sed -i "s/usernamehere/$USER/g" /var/www/opencart/config.php
-        - sed -i "s/passwordhere/$PASS/g" /var/www/opencart/config.php
-        - sed -i "s/frontendiphere/$ip4/g" /var/www/opencart/admin/config.php
-        - sed -i "s/dbiphere/$MySQLip/g" /var/www/opencart/admin/config.php
-        - sed -i "s/usernamehere/$USER/g" /var/www/opencart/admin/config.php
-        - sed -i "s/passwordhere/$PASS/g" /var/www/opencart/admin/config.php2
+        - mysql -u {{ db_user }} -h ${{ db_address }} -e 'source /var/www/opencart/install/opencart.sql'
+        - mysql -u {{ db_user }} -h ${{ db_address }} -e "INSERT INTO oc_user (user_id,user_group_id,username,password,salt,firstname,lastname,email,image,code,ip,status,date_added) VALUES (1,1,'admin','5feaa046f6927df3d744007ec1491dba838f672e','c4wnfrq9J','demo','user','admin@admin.com','none','none','none',1,'2019-01-31 06:29:09')" opencart
+        - sed -i "s/frontendiphere/{{ my_ip }}/g" /var/www/opencart/config.php
+        - sed -i "s/dbiphere/${{ db_address }}/g" /var/www/opencart/config.php
+        - sed -i "s/usernamehere/{{ db_user }}/g" /var/www/opencart/config.php
+        - sed -i "s/passwordhere/{{ db_password }}/g" /var/www/opencart/config.php
+        - sed -i "s/frontendiphere/{{ my_ip }}/g" /var/www/opencart/admin/config.php
+        - sed -i "s/dbiphere/${{ db_address }}/g" /var/www/opencart/admin/config.php
+        - sed -i "s/usernamehere/{{ db_user }}/g" /var/www/opencart/admin/config.php
+        - sed -i "s/passwordhere/{{ db_password }}/g" /var/www/opencart/admin/config.php2
         - echo "ocuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
     - name: "Start and enable services"
