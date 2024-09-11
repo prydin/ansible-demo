@@ -30,6 +30,9 @@
           - mysql-client
 
   tasks:
+    - name: "Copy current IP to my_ip"
+      set_fact:
+        my_ip: "{{ ansible_default_ipv4.address }}"
     - name: "Clone OpenCart demo from Github"
       git:
         repo: "https://github.com/jsenicka/opencart-demo.git"
