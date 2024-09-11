@@ -63,7 +63,7 @@
           </VirtualHost>
         dest: "/etc/apache2/sites-available/opencart.conf"
 
-    - name: "Set up database username":
+    - name: "Set up database username"
       replace:
         path: "{{ item }}"
         regexp: "usernamehere"
