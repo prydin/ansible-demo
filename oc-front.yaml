@@ -50,7 +50,8 @@
 
     - name: "Set owner and permissions on /var/www/opencart"
       file:
-        path: "/var/www/opencart/"
+        path: "/var/www/opencart"
+        recurse: yes
         state: directory
         owner: www-data
         group: www-data
