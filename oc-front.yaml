@@ -19,7 +19,7 @@
         name:
           - apache2
           - git
-          - php
+          - php7.4
           - php-mysql
           - libapache2-mod-php
           - php-cli
