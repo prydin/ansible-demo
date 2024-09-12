@@ -43,12 +43,12 @@
       command: "mv /tmp/opencart /var/www/"
 
     - name: "Set owner and permissions on /var/www/opencart"
-        file:
-          path: "/var/www/opencart"
-          state: directory
-          owner: www-data
-          group: www-data
-          mode: 0775
+      file:
+        path: "/var/www/opencart"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: 0775
 
     - name: "Write apache configuration to opencart.conf"
       copy:
