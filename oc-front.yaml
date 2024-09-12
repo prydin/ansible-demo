@@ -118,10 +118,6 @@
     - name: "Copy OpenCart files to /var/www/html"
       command: "{{ item }}"
       with_items:
-        - chown -R www-data.www-data /var/www/opencart
-        - chmod -R 775 /var/www/opencart
-        - sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
-        - cd /etc/apache2/sites-available/
         - a2ensite opencart.conf
         - a2dissite 000-default.conf
         - mysql -u {{ db_user }} -h {{ db_ip }} -e 'source /var/www/opencart/install/opencart.sql'
