@@ -69,7 +69,7 @@
           [client]
           user={{ db_user }}
           password={{ db_password }}
-        dest: "/etc/mysql/mysql.conf.d/mysqld.cnf"
+        dest: "/etc/mysql/conf.d/mysqld.cnf"
 
     - name: "Set up database username"
       replace:
