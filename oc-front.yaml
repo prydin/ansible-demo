@@ -63,6 +63,14 @@
           </VirtualHost>
         dest: "/etc/apache2/sites-available/opencart.conf"
 
+    - name: "Create mysql.cnf"
+      copy:
+        content: |
+          [client]
+          user={{ db_user }}
+          password={{ db_password }}
+        dest: "/etc/mysql/mysql.conf.d/mysqld.cnf"
+
     - name: "Set up database username"
       replace:
         path: "{{ item }}"
@@ -108,9 +116,6 @@
         - cd /etc/apache2/sites-available/
         - a2ensite opencart.conf
         - a2dissite 000-default.conf
-        - echo "[client]" >> /etc/mysql/mysql.conf.d/mysqld.cnf
-        - echo "user={{ db_user }}" >> /etc/mysql/mysql.conf.d/mysqld.cnf
-        - echo "password={{ db_password }}" >> /etc/mysql/mysql.conf.d/mysqld.cnf
         - mysql -u {{ db_user }} -h {{ db_ip }} -e 'source /var/www/opencart/install/opencart.sql'
         - mysql -u {{ db_user }} -h {{ db_ip }} -e "INSERT INTO oc_user (user_id,user_group_id,username,password,salt,firstname,lastname,email,image,code,ip,status,date_added) VALUES (1,1,'admin','5feaa046f6927df3d744007ec1491dba838f672e','c4wnfrq9J','demo','user','admin@admin.com','none','none','none',1,'2019-01-31 06:29:09')" opencart
 
