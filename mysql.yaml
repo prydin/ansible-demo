@@ -43,7 +43,7 @@
       with_items:
         - mysql
     
-    - name "Create database user"
+    - name: "Create database user"
       mysql_user:
         name: "{{ dbuser }}"
         password: "{{ dbpassword }}"
