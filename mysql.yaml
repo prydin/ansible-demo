@@ -18,16 +18,16 @@
         name: software-properties-common
         state: present
 
+    - name: Install MySQL APT GPG key
+      ansible.builtin.apt_key:
+        url: 'https://repo.mysql.com/RPM-GPG-KEY-mysql'
+        state: present
+
     - name: Add MySQL APT repository
       ansible.builtin.apt_repository:
         repo: 'deb http://repo.mysql.com/apt/ubuntu/ focal mysql-5.7'
         state: present
         update_cache: yes
-
-    - name: Install MySQL APT GPG key
-      ansible.builtin.apt_key:
-        url: 'https://repo.mysql.com/RPM-GPG-KEY-mysql'
-        state: present
 
     - name: "Install MySQL Server 5.7"
       apt:
