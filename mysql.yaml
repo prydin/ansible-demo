@@ -8,6 +8,11 @@
     - /tmp/vars.json
 
   pre_tasks:
+    - name: Add PGP key
+      apt_key:
+        keyserver: hkp://pgp.mit.edu:80
+        id: 5072E1F5
+        
     - name: "Add official APT repository"
       apt_repository:
         repo: "deb http://repo.mysql.com/apt/debian/ stretch mysql-5.7"
