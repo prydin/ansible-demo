@@ -19,7 +19,7 @@
         name:
           - mysql-server
           - mysql-client
-          - pymysql
+          - python3-mysqldb
           - unzip
         state: present
         update_cache: yes  
