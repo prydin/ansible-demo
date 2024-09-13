@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+  become_user: root
+
+  vars_files:
+    - /tmp/vars.json
+    - /tmp/env.json
+
+  pre_tasks:
+    - name: "Install MySQL Server 5.7"
+      apt:
+        name:
+          - mysql-server-5.7
+          - mysql-client
+          - libmysqlclient-dev
+          - unzip
+          - opem-vm-tools
+        state: present
+        update_cache: yes  
