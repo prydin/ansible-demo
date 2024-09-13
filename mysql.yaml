@@ -6,7 +6,6 @@
 
   vars_files:
     - /tmp/vars.json
-    - /tmp/env.json
 
   pre_tasks:
     - name: "Install MySQL Server 5.7"
