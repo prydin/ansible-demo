@@ -7,7 +7,7 @@
   vars_files:
     - /tmp/vars.json
 
-  #pre_tasks:
+  pre_tasks:
   #  - name: "Add mysql 5.7 apt repository"
   #    apt_repository:
   #     repo: 'deb http://archive.ubuntu.com/ubuntu main universe multiverse restricted'
