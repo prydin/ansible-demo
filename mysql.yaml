@@ -7,12 +7,12 @@
   vars_files:
     - /tmp/vars.json
 
-  pre_tasks:
-    - name: "Add mysql 5.7 apt repository"
-      apt_repository:
-        repo: 'deb http://archive.ubuntu.com/ubuntu main universe multiverse restricted'
-        state: present
-        update_cache: yes
+  #pre_tasks:
+  #  - name: "Add mysql 5.7 apt repository"
+  #    apt_repository:
+  #     repo: 'deb http://archive.ubuntu.com/ubuntu main universe multiverse restricted'
+  #     state: present
+  #      update_cache: yes
 
     - name: "Install MySQL Server 5.7"
       apt:
