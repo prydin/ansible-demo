@@ -26,6 +26,7 @@
     - name: Add MySQL APT repository
       ansible.builtin.apt_repository:
         repo: 'deb http://repo.mysql.com/apt/ubuntu/ focal mysql-5.7'
+        validate_certs: no
         state: present
         update_cache: yes
 
