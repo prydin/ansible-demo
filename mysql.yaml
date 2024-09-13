@@ -13,20 +13,13 @@
         update_cache: yes
         cache_valid_time: 3600
 
-    - name: Install software-properties-common
-      ansible.builtin.apt:
-        name: software-properties-common
-        state: present
-
-    - name: Install MySQL APT GPG key
-      ansible.builtin.apt_key:
-        url: 'https://repo.mysql.com/RPM-GPG-KEY-mysql'
-        state: present
-
-    - name: Add MySQL APT repository
-      ansible.builtin.apt_repository:
-        repo: 'deb http://repo.mysql.com/apt/ubuntu/ focal mysql-5.7'
-        validate_certs: no
+    - name: Add public key mysql from ubuntu server
+      apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: 467B942D3A79BD29
+    - name: add mysql 5.7 apt repository
+      apt_repository:
+        repo: 'deb http://repo.mysql.com/apt/ubuntu bionic mysql-5.7'
         state: present
         update_cache: yes
 
