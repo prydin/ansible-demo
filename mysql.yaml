@@ -8,16 +8,17 @@
     - /tmp/vars.json
 
   pre_tasks:
-    - name: Update apt cache
+    - name: "Update apt cache"
       ansible.builtin.apt:
         update_cache: yes
         cache_valid_time: 3600
 
-    - name: Add public key mysql from ubuntu server
+    - name: "Add public key mysql from ubuntu server"
       apt_key:
         keyserver: keyserver.ubuntu.com
         id: 467B942D3A79BD29
-    - name: add mysql 5.7 apt repository
+
+    - name: "Add mysql 5.7 apt repository"
       apt_repository:
         repo: 'deb http://repo.mysql.com/apt/ubuntu bionic mysql-5.7'
         state: present
