@@ -29,9 +29,9 @@
         content: |
           [client]
           user=root
-          password={{ dbpassword }}
+          password={{ db_password }}
           user=ocuser
-          password={{ dbpassword }}
+          password={{ db_password }}
         dest: "/etc/mysql/mysql.conf.d/mysqld.cnf"
         append: yes
         owner: root
@@ -45,8 +45,8 @@
     
     - name: "Create database user"
       mysql_user:
-        name: "{{ dbuser }}"
-        password: "{{ dbpassword }}"
+        name: "{{ db_user }}"
+        password: "{{ db_password }}"
         priv: "*.*:ALL"
 
     - name: "Create database"
@@ -54,4 +54,4 @@
         name: "opencart"
         state: present
         login_user: root
-        login_password: "{{ dbpassword }}"
+        login_password: "{{ db_password }}"
