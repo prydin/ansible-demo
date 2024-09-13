@@ -25,7 +25,7 @@
 
   tasks:
     - name: "Create MySQL config files"
-      copy:
+      blockinfile:
         content: |
           [client]
           user=root
@@ -33,10 +33,6 @@
           user=ocuser
           password={{ db_password }}
         dest: "/etc/mysql/mysql.conf.d/mysqld.cnf"
-        append: yes
-        owner: root
-        group: root
-        mode: 0644
 
     - name: "Start and enable services"
       service: "name={{ item }} state=restarted enabled=yes"
