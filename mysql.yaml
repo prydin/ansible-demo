@@ -20,6 +20,5 @@
           - mysql-server
           - mysql-client
           - unzip
-          - opem-vm-tools
         state: present
         update_cache: yes  
