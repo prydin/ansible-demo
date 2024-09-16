@@ -36,6 +36,12 @@
           password={{ db_password }}
         dest: "/etc/mysql/mysql.conf.d/mysqld.cnf"
 
+    - name: "Bind MySQL socket to all interfaces"
+      replace:  
+        path: '/etc/mysql/mysql.conf.d/mysqld.cnf'
+        regexp: '^\s*bind-address'
+        replace: '#bind-address'
+
     - name: "Start and enable services"
       service: "name={{ item }} state=restarted enabled=yes"
       with_items:
