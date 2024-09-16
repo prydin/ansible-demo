@@ -14,12 +14,13 @@
   #     state: present
   #      update_cache: yes
 
-    - name: "Install MySQL Server 5.7"
+    - name: "Install MySQL Server"
       apt:
         name:
           - mysql-server
           - mysql-client
           - python3-mysqldb
+          - python-mysqldb
           - unzip
         state: present
         update_cache: yes  
