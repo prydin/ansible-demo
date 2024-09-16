@@ -35,6 +35,7 @@
           - unzip
           - open-vm-tools
           - mysql-client
+          - net-tools
 
   tasks:
     - name: "Copy current IP to my_ip"
