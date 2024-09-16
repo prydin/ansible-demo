@@ -54,7 +54,7 @@
         priv: "*.*:ALL"
         state: present
 
-    - name "Flush database privileges"
+    - name: "Flush database privileges"
       mysql_db:
         name: "*.*"
         state: flush_privs
