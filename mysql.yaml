@@ -52,7 +52,12 @@
         name: "{{ db_user }}@%"
         password: "{{ db_password }}"
         priv: "*.*:ALL"
-        flush_privileges: yes
+        state: present
+
+    - name "Flush database privileges"
+      mysql_db:
+        name: "*.*"
+        state: flush_privs
 
     - name: "Create database"
       mysql_db:
