@@ -64,8 +64,8 @@
 
     - name: "Build the application"
       command: "mvnw package"
-        args:
-          chdir: "/opt/springboot"
+      args:
+        chdir: "/opt/springboot"
 
     - name: "Start and enable services"
       systemd_service: "name={{ item }} state=restarted enabled=yes"
