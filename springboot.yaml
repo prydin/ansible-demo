@@ -68,7 +68,7 @@
         chdir: "/opt/springboot"
 
     - name: "Start and enable services"
-      systemd_service: 
+      systemd: 
         name: springboot
         state: restarted
         daemon_reload: yes
