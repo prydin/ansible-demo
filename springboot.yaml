@@ -1,0 +1,75 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+  become_user: root
+
+  vars_files:
+    - /tmp/vars.json
+    - /tmp/env.json
+
+  pre_tasks:
+    - name: "Add pa:ondrej/php repository"
+      apt_repository:
+        repo: "ppa:ondrej/php"
+        state: present
+        update_cache: yes
+
+    - name: "Install packages"
+      apt: 
+        name:
+          - apache2
+          - git
+          - openjdk-19-jre-headless
+          - maven
+          - unzip
+          - open-vm-tools
+          - net-tools
+
+  tasks:
+    - name: "Copy current IP to my_ip"
+      set_fact:
+        my_ip: "{{ ansible_default_ipv4.address }}"
+    - name: "Clone Java demo from Github"
+      git:
+        repo: "{{ git_repo }}"
+        version: "{{ git_branch }}"
+        depth: 1
+        dest: "/opt/springboot"
+
+    - name: "Set owner and permissions on application files"
+      file:
+        path: "/opt/springboot"
+        recurse: yes
+        state: directory
+        owner: sysadmin
+        group: sysadmin
+        mode: 0775
+
+    - name: "Write service file
+      copy:
+        content: |
+        [Unit]
+        Description=pet-clinic
+        After=syslog.target
+
+        [Service]
+        User=sysadmin
+        ExecStart=java -jar /opt/springboot/target/*.jar
+        SuccessExitStatus=143
+
+        [Install]
+        WantedBy=multi-user.target
+
+        dest: "/etc/systemd/system/springboot.service"
+
+    - name: "Build the application"
+      command: "mvnw package"
+        args:
+          chdir: "/opt/springboot"
+
+    - name: "Start and enable services"
+      systemd_service: "name={{ item }} state=restarted enabled=yes"
+      daemon_reload: yes
+      with_items:
+        - springboot
