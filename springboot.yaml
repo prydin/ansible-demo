@@ -46,7 +46,7 @@
         group: sysadmin
         mode: 0775
 
-    - name: "Write service file
+    - name: "Write service file"
       copy:
         content: |
         [Unit]
@@ -60,8 +60,7 @@
 
         [Install]
         WantedBy=multi-user.target
-
-        dest: "/etc/systemd/system/springboot.service"
+      dest: "/etc/systemd/system/springboot.service"
 
     - name: "Build the application"
       command: "mvnw package"
