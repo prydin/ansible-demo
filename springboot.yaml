@@ -69,6 +69,6 @@
 
     - name: "Start and enable services"
       systemd_service: "name={{ item }} state=restarted enabled=yes"
-      daemon_reload: yes
+        daemon_reload: yes
       with_items:
         - springboot
