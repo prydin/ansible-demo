@@ -4,9 +4,9 @@
   become: yes
   become_user: root
 
-  vars_files:
-    - /tmp/vars.json
-    - /tmp/env.json
+  #vars_files:
+  #  - /tmp/vars.json
+  #  - /tmp/env.json
 
   pre_tasks:
     - name: "Add pa:ondrej/php repository"
