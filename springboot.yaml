@@ -9,12 +9,6 @@
   #  - /tmp/env.json
 
   pre_tasks:
-    - name: "Add pa:ondrej/php repository"
-      apt_repository:
-        repo: "ppa:ondrej/php"
-        state: present
-        update_cache: yes
-
     - name: "Install packages"
       apt: 
         name:
@@ -63,7 +57,7 @@
         dest: "/etc/systemd/system/springboot.service"
 
     - name: "Build the application"
-      command: "mvnw package"
+      command: "./mvnw package"
       args:
         chdir: "/opt/springboot"
 
