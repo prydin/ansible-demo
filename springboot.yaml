@@ -50,7 +50,7 @@
       copy:
         content: |
         [Unit]
-        Description=pet-clinic
+        Description=sprinboot-application
         After=syslog.target
 
         [Service]
