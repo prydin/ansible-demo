@@ -43,7 +43,8 @@
         my_ip: "{{ ansible_default_ipv4.address }}"
     - name: "Clone OpenCart demo from Github"
       git:
-        repo: "https://github.com/jsenicka/opencart-demo.git"
+        repo: "https://github.com/prydin/opencart-demo.git"
+        version: master
         depth: 1
         dest: "/tmp/opencart"
 
