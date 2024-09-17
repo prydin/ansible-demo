@@ -68,7 +68,8 @@
         chdir: "/opt/springboot"
 
     - name: "Start and enable services"
-      systemd_service: "name={{ item }} state=restarted enabled=yes"
+      systemd_service: 
+        name: springboot
+        state: restarted
         daemon_reload: yes
-      with_items:
-        - springboot
+        enabled: yes
