@@ -49,7 +49,7 @@
 
           [Service]
           User=sysadmin
-          ExecStart=java -jar /opt/springboot/target/*.jar
+          ExecStart=sh -c "java -jar /opt/springboot/target/*.jar"
           SuccessExitStatus=143
 
           [Install]
