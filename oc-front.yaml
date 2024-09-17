@@ -44,7 +44,7 @@
     - name: "Clone OpenCart demo from Github"
       git:
         repo: "https://github.com/prydin/opencart-demo.git"
-        version: master
+        version: {{ git_branch}}
         depth: 1
         dest: "/tmp/opencart"
 
