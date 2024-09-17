@@ -49,18 +49,18 @@
     - name: "Write service file"
       copy:
         content: |
-        [Unit]
-        Description=sprinboot-application
-        After=syslog.target
+          [Unit]
+          Description=sprinboot-application
+          After=syslog.target
 
-        [Service]
-        User=sysadmin
-        ExecStart=java -jar /opt/springboot/target/*.jar
-        SuccessExitStatus=143
+          [Service]
+          User=sysadmin
+          ExecStart=java -jar /opt/springboot/target/*.jar
+          SuccessExitStatus=143
 
-        [Install]
-        WantedBy=multi-user.target
-      dest: "/etc/systemd/system/springboot.service"
+          [Install]
+          WantedBy=multi-user.target
+        dest: "/etc/systemd/system/springboot.service"
 
     - name: "Build the application"
       command: "mvnw package"
