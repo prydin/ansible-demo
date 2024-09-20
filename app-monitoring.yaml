@@ -17,9 +17,10 @@
 
   tasks:  
     - name: "Install monitoring agent"
-      shell: |
-        cd /tmp
-        curl -k https://{{ proxy_ip }}/downloads/salt/telegraf-utils.sh --output telegraf-utils.sh
-        export token=`curl -X POST https://{{ ops_ip }}}/suite-api/api/auth/token/acquire?_no_links=true -H "accept: application/json" -H "Content-Type: application/json" -d '{ "username" : "{{ ops_user }}", "password" : "{{ ops_password }}" }' | jq .token`
-        ./telegraf-utils.sh product-managed -c {{ proxy_ip }} -v {{ ops_ip }} -t $token
-        rm telegraf-utils.sh
+      shell: 
+        cmd: |
+          cd /tmp
+          curl -k https://{{ proxy_ip }}/downloads/salt/telegraf-utils.sh --output telegraf-utils.sh
+          export token=`curl -X POST https://{{ ops_ip }}}/suite-api/api/auth/token/acquire?_no_links=true -H "accept: application/json" -H "Content-Type: application/json" -d '{ "username" : "{{ ops_user }}", "password" : "{{ ops_password }}" }' | jq .token`
+          ./telegraf-utils.sh product-managed -c {{ proxy_ip }} -v {{ ops_ip }} -t $token
+          rm telegraf-utils.sh
