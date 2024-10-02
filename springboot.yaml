@@ -9,6 +9,9 @@
   #  - /tmp/env.json
 
   pre_tasks:
+    - name: Wait for automatic system updates
+      shell: "while fuser /var/lib/dpkg/lock >/dev/null 2>&1; do sleep 1; done;"
+    
     - name: "Install packages"
       apt: 
         name:
