@@ -14,6 +14,7 @@
         name:
           - curl
           - jq
+          - unzip
         state: present
 
   tasks:  
