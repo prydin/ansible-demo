@@ -1,11 +1,11 @@
 ---
+  # Set up app monitoring
+- import_playbook: app-monitoring.yaml
+
 - hosts: localhost
   connection: local
   become: yes
   become_user: root
-
-  # Set up app monitoring
-- import_playbook: app-monitoring.yaml
 
   vars_files:
     - /tmp/vars.json
