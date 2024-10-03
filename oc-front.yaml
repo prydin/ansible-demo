@@ -11,7 +11,7 @@
   pre_tasks:
     - name: Wait for automatic system updates
       shell: "while fuser /var/lib/dpkg/lock >/dev/null 2>&1; do sleep 1; done;"
-      
+
     - name: "Add pa:ondrej/php repository"
       apt_repository:
         repo: "ppa:ondrej/php"
@@ -41,6 +41,8 @@
           - net-tools
 
   tasks:
+    - name: "Set up app monitoring"
+      include_tasks: app-monitoring.yaml
     - name: "Copy current IP to my_ip"
       set_fact:
         my_ip: "{{ ansible_default_ipv4.address }}"

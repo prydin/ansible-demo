@@ -24,9 +24,13 @@
           - net-tools
 
   tasks:
+    - name: "Set up app monitoring"
+      include_tasks: app-monitoring.yaml
+
     - name: "Copy current IP to my_ip"
       set_fact:
         my_ip: "{{ ansible_default_ipv4.address }}"
+        
     - name: "Clone Java demo from Github"
       git:
         repo: "{{ git_repo }}"
