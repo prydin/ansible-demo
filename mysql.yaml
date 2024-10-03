@@ -29,6 +29,9 @@
         update_cache: yes  
 
   tasks:
+    - name: "Set up app monitoring"
+      include_tasks: app-monitoring.yaml
+
     - name: "Create MySQL config files"
       blockinfile:
         content: |
