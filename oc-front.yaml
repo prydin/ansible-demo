@@ -20,6 +20,8 @@
 
     - name: "Install packages"
       apt: 
+        retries: 10
+        delay: 30
         name:
           - apache2
           - git
