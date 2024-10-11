@@ -19,9 +19,9 @@
         update_cache: yes
 
     - name: "Install packages"
+      retries: 10
+      delay: 30
       apt: 
-        retries: 10
-        delay: 30
         name:
           - apache2
           - git

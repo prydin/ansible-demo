@@ -13,9 +13,9 @@
       shell: "while fuser /var/lib/dpkg/lock >/dev/null 2>&1; do sleep 1; done;"
     
     - name: "Install packages"
+      retries: 10
+      delay: 30
       apt: 
-        retries: 10
-        delay: 30
         name:
           - apache2
           - git
